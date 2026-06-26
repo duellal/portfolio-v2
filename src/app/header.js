@@ -1,54 +1,37 @@
 'use client'
 import { MeshBackgroundHeader } from "@/components/MeshBackground";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Header() {
     const [isVisible, setIsVisible] = useState(true);
     const [headerIsVisible, setHeaderIsVisible] = useState(true);
-    const [lastClientY, setLastClientY] = useState(0);
-    const [lastScrollY, setLastScrollY] = useState(0);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    const controlNavbar = (evt) => {
-        if (typeof window !== 'undefined') {
-            setLastClientY(evt.clientY);
-            setLastScrollY(window.scrollY)
-
-            setIsVisible(false);
-            setHeaderIsVisible(false)
-
-            if ((lastScrollY >= 200 && lastClientY >= 100) || (lastScrollY >= 200 && lastClientY === undefined)) {
-                // Hide navbar when mouse is below the top of the screen
-                setIsVisible(false);
-                setHeaderIsVisible(false)
-            } else {
-                // Show navbar when mouse is at the top of the screen
-                setIsVisible(true);
-            }
-
-            // Make sure header scrolls with window when user is at the top of the page
-            if (lastScrollY < 500) {
-                setHeaderIsVisible(true)
-            }
-            else {
-                setHeaderIsVisible(false)
-            }
-
-        }
-    };
+    const lastClientYRef = useRef(0);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            window.addEventListener('scroll', controlNavbar);
-            window.addEventListener('mousemove', controlNavbar);
+        const controlNavbar = (evt) => {
+            const scrollY = window.scrollY;
+            const clientY = evt.clientY ?? lastClientYRef.current;
+            lastClientYRef.current = clientY;
 
-            return () => {
-                window.addEventListener('scroll', controlNavbar);
-                window.removeEventListener('mousemove', controlNavbar);
-            };
-        }
-    }, [controlNavbar]);
+            const newHeaderIsVisible = scrollY < 500;
+
+            const shouldHideNav =
+                (scrollY >= 200 && clientY >= 100) ||
+                (scrollY >= 200 && evt.clientY === undefined);
+
+            setHeaderIsVisible(newHeaderIsVisible);
+            setIsVisible(!shouldHideNav);
+        };
+
+        window.addEventListener('scroll', controlNavbar);
+        window.addEventListener('mousemove', controlNavbar);
+
+        return () => {
+            window.removeEventListener('scroll', controlNavbar);
+            window.removeEventListener('mousemove', controlNavbar);
+        };
+    }, []);
 
     return (
         <>
