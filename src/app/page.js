@@ -1,6 +1,19 @@
 
 import Footer from "../components/sections/footer";
 import Header from "../components/sections/header";
+import HomeContact from "@/components/sections/contact";
+import HomeExperience from "@/components/sections/experience";
+import HomeProjects from "@/components/sections/projects";
+import HomeSkills from "@/components/sections/skills";
+import HomeHero from "@/components/sections/hero";
+
+const reactComp = [
+  { Comp: HomeHero, name: `hero` },
+  { Comp: HomeExperience, name: `experience` },
+  { Comp: HomeSkills, name: `skills` },
+  { Comp: HomeProjects, name: `projects` },
+  { Comp: HomeContact, name: `contact` },
+]
 
 export default function Home() {
   return (
@@ -10,31 +23,22 @@ export default function Home() {
 
         {/* <MeshBackgroundHero /> */}
         {/* <MeshBackgroundRepeat /> */}
-        <section className="w-full h-screen">
-          <div className="w-full h-full">
-          </div>
-        </section>
+        {
+          reactComp.map((obj, idx) => {
+            const { Comp, name } = obj
 
-        <section className="w-full h-screen">
-          <div className="w-full h-full">
-          </div>
-        </section>
+            return <section
+              className="w-full h-screen"
+              key={`${idx}-${name}`}
+            >
+              <div className="w-full h-full">
+                <Comp>
 
-        <section className="w-full h-screen">
-          <div className="w-full h-full">
-          </div>
-        </section>
-
-        <section className="w-full h-screen">
-          <div className="w-full h-full">
-          </div>
-        </section>
-
-        <section className="w-full h-screen">
-          <div className="w-full h-full">
-          </div>
-        </section>
-        {/* </MeshBackgroundRepeat> */}
+                </Comp>
+              </div>
+            </section>
+          })
+        }
 
         <Footer />
       </main>
