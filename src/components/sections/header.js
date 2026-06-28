@@ -1,6 +1,6 @@
 'use client'
 
-import { MeshBackgroundHeader } from "@/components/MeshBackground";
+import { MeshBackgroundHeader } from "@/components/meshBackground";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 

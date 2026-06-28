@@ -1,6 +1,6 @@
-import { MeshBackgroundHero, MeshBackgroundRepeat } from "@/components/MeshBackground";
-import Footer from "./footer";
-import Header from "./header";
+
+import Footer from "../components/sections/footer";
+import Header from "../components/sections/header";
 
 export default function Home() {
   return (

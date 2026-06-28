@@ -1,4 +1,4 @@
-import { MeshBackgroundFooter } from "@/components/MeshBackground";
+import { MeshBackgroundFooter } from "@/components/meshBackground";
 
 export default function Footer() {
     return (
