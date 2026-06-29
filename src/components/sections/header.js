@@ -21,9 +21,7 @@ export default function Header() {
     const [navItemWidth, setNavItemWidth] = useState(0)
     const navbarRef = useRef(null)
 
-    const linkStyling = `flex justify-center text-nowrap rounded-full border 
-    border-transparent
-    `
+    const linkStyling = `flex justify-center text-nowrap rounded-full border border-transparent`
 
 
     useLayoutEffect(() => {
@@ -76,7 +74,7 @@ export default function Header() {
             >
                 < nav
                     id='navbar'
-                    className={`flex justify-between align-center h-22 w-[80%] motion-reduce:duration-0 items-center justify-between shadow-lg bg-white/5 backdrop-blur-lg rounded-full 
+                    className={`flex justify-between align-center h-22 w-[80%] motion-reduce:duration-0 items-center justify-between shadow-lg bg-white/5 backdrop-blur-lg rounded-full
                     ${headerIsVisible ? 'transition-none shadow-(--mesh-navy)/10' : isVisible ? 'top-0 translate-y-0 shadow-white/10' : '-translate-y-full'} 
                     transition-transform transition-discrete ease-in-out duration-900`}
                     ref={navbarRef}

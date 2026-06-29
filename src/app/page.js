@@ -18,7 +18,8 @@ const reactComp = [
 export default function Home() {
   return (
     <div className="overflow-scroll flex items-center justify-center font-sans">
-      <main className="absolute top-0 left-0 flex w-full flex-col items-center justify-between">
+      <main className="absolute top-0 left-0 flex w-full flex-col items-center justify-between text-light-purple text-lg font-medium">
+
         <Header />
 
         {/* <MeshBackgroundHero /> */}
@@ -28,13 +29,14 @@ export default function Home() {
             const { Comp, name } = obj
 
             return <section
-              className="w-full h-screen"
+              id={name}
+              className="w-[65%] my-6"
               key={`${idx}-${name}`}
             >
-              <div className="w-full h-full">
-                <Comp>
-
-                </Comp>
+              <div
+                className="w-full h-full"
+              >
+                <Comp />
               </div>
             </section>
           })
